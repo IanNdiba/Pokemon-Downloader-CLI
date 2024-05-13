@@ -1,4 +1,5 @@
 import inquirer from "inquirer";
+import { parseOptions } from "./saving.js";
 
 //Accepting pokemon name for download from user
 const promptForPokemon = async () => {
@@ -44,6 +45,7 @@ const promptToContinue = async () => {
 //fetching pokemon data from server
 const fetchPokemon = async (pokemonName) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
+  //TODO error handling with response.ok
   const response = await fetch(url);
   const json = await response.json();
   return json;
@@ -51,15 +53,13 @@ const fetchPokemon = async (pokemonName) => {
 
 const promptUser = async () => {
   while (true) {
-    const pokemonName = await promptForPokemon();
-    console.log(pokemonName.pokemon_name);
-
     //fetch should go here
-
+    const pokemonName = await promptForPokemon();
+    const pokemonJSON = await fetchPokemon(pokemonName.pokemon_name);
     const pokemonOptions = await promptForDownloadInfo();
-    console.log(pokemonOptions.options);
     //use these options for sprites and other data
-    //save them to local storage
+    await parseOptions(pokemonJSON, pokemonOptions);
+    //save them to local disk
 
     const keepGoing = await promptToContinue();
     if (keepGoing.continue === "NO") {
@@ -68,4 +68,4 @@ const promptUser = async () => {
   }
 };
 
-promptUser();
+export { promptUser };
