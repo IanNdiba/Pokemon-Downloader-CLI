@@ -1,5 +1,27 @@
 {
   "dependencies": {
     "inquirer": "^9.2.20"
-  }
+  },
+  "name": "pokemon-downloader-cli",
+  "version": "1.0.0",
+  "description": "CLI downloader",
+  "exports": "./prompts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IanNdiba/Pokemon-Downloader-CLI.git"
+  },
+  "type": "module",
+  "author": "ian",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18"
+  },
+  "bugs": {
+    "url": "https://github.com/IanNdiba/Pokemon-Downloader-CLI/issues"
+  },
+  "homepage": "https://github.com/IanNdiba/Pokemon-Downloader-CLI#readme",
+  "devDependencies": {}
 }
